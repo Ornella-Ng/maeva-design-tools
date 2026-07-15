@@ -78,7 +78,7 @@ coral: #cb4743
 sage: #657b71
 petrol: #00818a
 beige: #f9f4ee</textarea>
-      <div class="hint">Format accepté : <code>name: #hex</code>, <code>name #hex</code> ou <code>name, #hex</code>.</div>
+      <div class="hint">Formats acceptés : <code>name: #hex</code> ou <code>name: #hex @niveau</code>. Sans niveau précisé, la couleur est utilisée comme référence 500.</div>
 
       <div class="grid">
         <div>
@@ -111,12 +111,7 @@ beige: #f9f4ee</textarea>
         <button class="secondary" id="download">Télécharger JSON</button>
       </div>
 
-      <div class="hint">
-  Formats acceptés :
-  <code>name: #hex</code> ou
-  <code>name: #hex @niveau</code>.
-  Sans niveau précisé, la couleur est utilisée comme référence 500.
-</div>
+
     </section>
 
     <section>
@@ -156,171 +151,50 @@ beige: #f9f4ee</textarea>
     const PROFILES = {
       yellow: {
         label: "yellow / brand hover amber",
-        l: {50:.990,100:.972,200:.940,300:.895,400:.840,600:.760,700:.650,800:.520,900:.390},
-        c: {50:.80,100:.94,200:1.05,300:1.08,400:1.05,600:1.02,700:.96,800:.82,900:.66},
-        hShift: {50:2,100:1,200:0,300:0,400:0,600:-4,700:-10,800:-18,900:-26},
-        maxC: {50:.165,100:.195,200:.225,300:.245,400:.250,600:.225,700:.195,800:.155,900:.115}
+        l: {50:.990,100:.972,200:.940,300:.895,400:.840,500:.820,600:.760,700:.650,800:.520,900:.390},
+        c: {50:.80,100:.94,200:1.05,300:1.08,400:1.05,500:1,600:1.02,700:.96,800:.82,900:.66},
+        hShift: {50:2,100:1,200:0,300:0,400:0,500:0,600:-4,700:-10,800:-18,900:-26},
+        maxC: {50:.165,100:.195,200:.225,300:.245,400:.250,500:.250,600:.225,700:.195,800:.155,900:.115}
       },
       blue: {
-  label: "blue",
-  l: {
-    50: .985,
-    100: .955,
-    200: .905,
-    300: .825,
-    400: .710,
-    500: .600,
-    600: .500,
-    700: .405,
-    800: .315,
-    900: .225
-  },
-  c: {
-    50: .12,
-    100: .22,
-    200: .38,
-    300: .58,
-    400: .82,
-    500: 1,
-    600: .92,
-    700: .78,
-    800: .58,
-    900: .42
-  }
-},
+        label: "blue",
+        l: {50:.985,100:.955,200:.905,300:.825,400:.710,500:.600,600:.500,700:.405,800:.315,900:.225},
+        c: {50:.12,100:.22,200:.38,300:.58,400:.82,500:1,600:.92,700:.78,800:.58,900:.42}
+      },
       teal: {
-  label: "teal / gamme",
-  l: {
-    50: .985,
-    100: .955,
-    200: .905,
-    300: .825,
-    400: .705,
-    500: .600,
-    600: .500,
-    700: .405,
-    800: .315,
-    900: .230
-  },
-  c: {
-    50: .14,
-    100: .25,
-    200: .42,
-    300: .62,
-    400: .86,
-    500: 1,
-    600: .92,
-    700: .78,
-    800: .60,
-    900: .44
-  },
-  hShift: {
-    50: 1,
-    100: 1,
-    200: 0,
-    300: 0,
-    400: 0,
-    500: 0,
-    600: -2,
-    700: -4,
-    800: -6,
-    900: -8
-  }
-},
+        label: "teal / gamme",
+        l: {50:.985,100:.955,200:.905,300:.825,400:.705,500:.600,600:.500,700:.405,800:.315,900:.230},
+        c: {50:.14,100:.25,200:.42,300:.62,400:.86,500:1,600:.92,700:.78,800:.60,900:.44},
+        hShift: {50:1,100:1,200:0,300:0,400:0,500:0,600:-2,700:-4,800:-6,900:-8}
+      },
       green: {
-  label: "green / success strong",
-  l: {
-    50: .985,
-    100: .955,
-    200: .905,
-    300: .825,
-    400: .705,
-    500: .590,
-    600: .455,
-    700: .360,
-    800: .270,
-    900: .200
-  },
-  c: {
-    50: .13,
-    100: .24,
-    200: .40,
-    300: .60,
-    400: .84,
-    500: 1,
-    600: 1.00,
-    700: .88,
-    800: .68,
-    900: .48
-  },
-  hShift: {
-    50: 1,
-    100: 1,
-    200: 0,
-    300: 0,
-    400: 0,
-    500: 0,
-    600: -2,
-    700: -5,
-    800: -8,
-    900: -11
-  }
-},
+        label: "green / success strong",
+        l: {50:.985,100:.955,200:.905,300:.825,400:.705,500:.590,600:.455,700:.360,800:.270,900:.200},
+        c: {50:.13,100:.24,200:.40,300:.60,400:.84,500:1,600:1.00,700:.88,800:.68,900:.48},
+        hShift: {50:1,100:1,200:0,300:0,400:0,500:0,600:-2,700:-5,800:-8,900:-11}
+      },
       red: {
-  label: "red / danger strong",
-  l: {
-    50: .985,
-    100: .950,
-    200: .895,
-    300: .805,
-    400: .685,
-    500: .570,
-    600: .455,
-    700: .355,
-    800: .265,
-    900: .190
-  },
-  c: {
-    50: .12,
-    100: .24,
-    200: .42,
-    300: .62,
-    400: .86,
-    500: 1,
-    600: 1.02,
-    700: .90,
-    800: .72,
-    900: .52
-  },
-  hShift: {
-    50: 1,
-    100: 1,
-    200: 0,
-    300: 0,
-    400: 0,
-    500: 0,
-    600: -1,
-    700: -3,
-    800: -5,
-    900: -7
-  }
-},
+        label: "red / danger strong",
+        l: {50:.985,100:.950,200:.895,300:.805,400:.685,500:.570,600:.455,700:.355,800:.265,900:.190},
+        c: {50:.12,100:.24,200:.42,300:.62,400:.86,500:1,600:1.02,700:.90,800:.72,900:.52},
+        hShift: {50:1,100:1,200:0,300:0,400:0,500:0,600:-1,700:-3,800:-5,900:-7}
+      },
       neutral: {
         label: "neutral",
-        l: {50:.985,100:.950,200:.895,300:.805,400:.665,600:.230,700:.180,800:.130,900:.090},
-        c: {50:.18,100:.16,200:.14,300:.12,400:.10,600:.80,700:.65,800:.50,900:.38},
-        maxC: {50:.010,100:.010,200:.010,300:.010,400:.010,600:.010,700:.010,800:.010,900:.010}
+        l: {50:.985,100:.950,200:.895,300:.805,400:.665,500:.500,600:.230,700:.180,800:.130,900:.090},
+        c: {50:.18,100:.16,200:.14,300:.12,400:.10,500:1,600:.80,700:.65,800:.50,900:.38},
+        maxC: {50:.010,100:.010,200:.010,300:.010,400:.010,500:.010,600:.010,700:.010,800:.010,900:.010}
       },
       surface: {
         label: "surface / beige",
-        l: {50:.995,100:.970,200:.930,300:.875,400:.790,600:.650,700:.535,800:.420,900:.310},
-        c: {50:.35,100:.70,200:1.00,300:1.05,400:1.00,600:.86,700:.70,800:.54,900:.40},
-        maxC: {50:.012,100:.018,200:.026,300:.034,400:.038,600:.034,700:.028,800:.022,900:.016}
+        l: {50:.995,100:.970,200:.930,300:.875,400:.790,500:.720,600:.650,700:.535,800:.420,900:.310},
+        c: {50:.35,100:.70,200:1.00,300:1.05,400:1.00,500:1,600:.86,700:.70,800:.54,900:.40},
+        maxC: {50:.012,100:.018,200:.026,300:.034,400:.038,500:.038,600:.034,700:.028,800:.022,900:.016}
       },
       generic: {
         label: "generic",
-        l: {50:.985,100:.955,200:.905,300:.825,400:.710,600:.500,700:.405,800:.315,900:.225},
-        c: {50:.12,100:.22,200:.38,300:.58,400:.82,600:.92,700:.78,800:.58,900:.42}
+        l: {50:.985,100:.955,200:.905,300:.825,400:.710,500:.600,600:.500,700:.405,800:.315,900:.225},
+        c: {50:.12,100:.22,200:.38,300:.58,400:.82,500:1,600:.92,700:.78,800:.58,900:.42}
       }
     };
 
@@ -372,7 +246,7 @@ beige: #f9f4ee</textarea>
       if (["club","home","teal","cyan","turquoise","respire"].includes(name)) return "teal";
 
       const o = toOklch(hex);
-      const h = (o.h ?? 0 + 360) % 360;
+      const h = ((o.h ?? 0) + 360) % 360;
       if (h >= 70 && h <= 115) return "yellow";
       if (h >= 15 && h < 70) return "red";
       if (h >= 115 && h < 170) return "green";
@@ -381,29 +255,31 @@ beige: #f9f4ee</textarea>
       return "generic";
     }
 
-  function generateScale(
-  name,
-  hex,
-  referenceLevel,
-  keepBlue,
-  surfaceBeige,
-  mode
-) {
+    function generateScale(
+      name,
+      hex,
+      referenceLevel,
+      keepBlue,
+      surfaceBeige,
+      mode
+    ) {
       const neutral800 = document.querySelector("#neutral800").checked;
 
       if (
-  keepBlue &&
-  name === "blue" &&
-  referenceLevel === 500 &&
-  hex.toUpperCase() === BLUE_FIXED[500].toUpperCase()
-) {
-  return {
-    scale: BLUE_FIXED,
-    profile: "locked blue"
-  };
-}
+        keepBlue &&
+        name === "blue" &&
+        referenceLevel === 500 &&
+        hex.toUpperCase() === BLUE_FIXED[500].toUpperCase()
+      ) {
+        return { scale: BLUE_FIXED, profile: "locked blue" };
+      }
 
-      if (neutral800 && name === "neutral" && hex.toUpperCase() === "#1C1C1E") {
+      if (
+        neutral800 &&
+        name === "neutral" &&
+        referenceLevel === 800 &&
+        hex.toUpperCase() === "#1C1C1E"
+      ) {
         return { scale: NEUTRAL_FIXED, profile: "locked neutral / 800 reference" };
       }
 
@@ -413,87 +289,42 @@ beige: #f9f4ee</textarea>
       if (surfaceBeige && name === "beige") {
         return {
           scale: {
-            50: generateSingle(hex, .995, 0.35, PROFILES.surface, 50, mode),
+            50: generateSingle(hex, .995, .35, PROFILES.surface, 50, mode),
             100: hex.toUpperCase(),
-            200: generateSingle(hex, .930, 1.00, PROFILES.surface, 200, mode)
+            200: generateSingle(hex, .930, 1, PROFILES.surface, 200, mode)
           },
           profile: profile.label
         };
       }
 
       const scale = {};
-const base = toOklch(hex);
+      const base = toOklch(hex);
+      if (!base) throw new Error(`Impossible de convertir la couleur ${hex} en OKLCH.`);
 
-if (!base) {
-  throw new Error(`Impossible de convertir la couleur ${hex} en OKLCH.`);
-}
+      const referenceProfileL = profile.l[referenceLevel];
+      const referenceProfileC = profile.c[referenceLevel];
+      if (referenceProfileL === undefined || referenceProfileC === undefined) {
+        throw new Error(`Le profil "${profileName}" ne prend pas en charge le niveau de référence ${referenceLevel}.`);
+      }
 
-const referenceProfileL = profile.l[referenceLevel];
-const referenceProfileC = profile.c[referenceLevel];
+      for (const level of LEVELS) {
+        if (level === referenceLevel) {
+          scale[level] = hex.toUpperCase();
+          continue;
+        }
 
-if (
-  referenceProfileL === undefined ||
-  referenceProfileC === undefined
-) {
-  throw new Error(
-    `Le profil "${profileName}" ne prend pas en charge le niveau de référence ${referenceLevel}.`
-  );
-}
+        if (referenceLevel === 500) {
+          scale[level] = generateSingle(hex, profile.l[level], profile.c[level], profile, level, mode);
+          continue;
+        }
 
-for (const level of LEVELS) {
-  if (level === referenceLevel) {
-    scale[level] = hex.toUpperCase();
-    continue;
-  }
+        const targetL = Math.max(0, Math.min(1, base.l + (profile.l[level] - referenceProfileL)));
+        const relativeChroma = referenceProfileC > 0 ? profile.c[level] / referenceProfileC : 1;
+        scale[level] = generateSingle(hex, targetL, relativeChroma, profile, level, mode);
+      }
 
-  if (referenceLevel === 500) {
-    /*
-      Conservation stricte du fonctionnement historique :
-      les palettes Maeva existantes restent inchangées.
-    */
-    scale[level] = generateSingle(
-      hex,
-      profile.l[level],
-      profile.c[level],
-      profile,
-      level,
-      mode
-    );
-
-    continue;
-  }
-
-  /*
-    Pour une référence autre que 500, on déplace la courbe
-    autour de la luminance réelle de la couleur saisie.
-  */
-  const targetL = Math.max(
-    0,
-    Math.min(
-      1,
-      base.l + (profile.l[level] - referenceProfileL)
-    )
-  );
-
-  const relativeChroma =
-    referenceProfileC > 0
-      ? profile.c[level] / referenceProfileC
-      : 1;
-
-  scale[level] = generateSingle(
-    hex,
-    targetL,
-    relativeChroma,
-    profile,
-    level,
-    mode
-  );
-}
-
-return {
-  scale,
-  profile: profile.label
-};
+      return { scale, profile: profile.label };
+    }
 
     function generateSingle(hex, targetL, cFactor, profile, level, mode) {
       const base = toOklch(hex);
@@ -589,7 +420,7 @@ const isLockedNeutral =
 const isLocked =
   isReferenceLevel ||
   isLockedBlue ||
-  isLockedNeutral; || (name === "neutral" && document.querySelector("#neutral800").checked && level === "800");
+  isLockedNeutral;
           const swatch = document.createElement("div");
           swatch.className = "swatch";
           swatch.innerHTML = `
