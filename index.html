@@ -210,12 +210,28 @@ beige: #f9f4ee</textarea>
     const toOklch = converter("oklch");
 
     function parseColors(text) {
-      return text.split(/\n+/).map(x => x.trim()).filter(Boolean).map((row) => {
-        const match = row.match(/^([a-zA-Z0-9_-]+)\s*[:,\s]\s*(#[0-9a-fA-F]{3,8})$/);
-        if (!match) throw new Error(`Ligne invalide : "${row}". Format attendu : name: #hex`);
-        return { name: match[1].toLowerCase(), hex: normalizeHex(match[2]) };
-      });
-    }
+      return text
+      .split(/\n+/)
+      .map((x) => x.trim())
+      .filter(Boolean)
+      .map((row) => {
+      const match = row.match(
+        /^([a-zA-Z0-9_-]+)\s*[:,\s]\s*(#[0-9a-fA-F]{3,8})(?:\s+@?(50|100|200|300|400|500|600|700|800|900))?$/
+      );
+
+      if (!match) {
+        throw new Error(
+          `Ligne invalide : "${row}". Format attendu : name: #hex ou name: #hex @niveau`
+        );
+      }
+
+      return {
+        name: match[1].toLowerCase(),
+        hex: normalizeHex(match[2]),
+        referenceLevel: match[3] ? Number(match[3]) : 500
+      };
+    });
+}
 
     function normalizeHex(hex) {
       const c = parse(hex);
@@ -242,7 +258,14 @@ beige: #f9f4ee</textarea>
       return "generic";
     }
 
-    function generateScale(name, hex, keepBlue, surfaceBeige, mode) {
+  function generateScale(
+  name,
+  hex,
+  referenceLevel,
+  keepBlue,
+  surfaceBeige,
+  mode
+    ) {
       const neutral800 = document.querySelector("#neutral800").checked;
 
       if (keepBlue && name === "blue") {
@@ -269,10 +292,10 @@ beige: #f9f4ee</textarea>
 
       const scale = {};
       for (const level of LEVELS) {
-        if (level === 500) {
-          scale[level] = hex.toUpperCase();
-          continue;
-        }
+        if (level === referenceLevel) {
+        scale[level] = hex.toUpperCase();
+        continue;
+      }
         scale[level] = generateSingle(hex, profile.l[level], profile.c[level], profile, level, mode);
       }
       return { scale, profile: profile.label };
@@ -306,7 +329,14 @@ beige: #f9f4ee</textarea>
       const result = {};
       const profiles = {};
       for (const color of colors) {
-        const generated = generateScale(color.name, color.hex, keepBlue, surfaceBeige, mode);
+        const generated = generateScale(
+          color.name,
+          color.hex,
+          color.referenceLevel,
+          keepBlue,
+          surfaceBeige,
+          mode
+        );
         result[color.name] = generated.scale;
         profiles[color.name] = generated.profile;
       }
