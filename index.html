@@ -67,7 +67,7 @@
   <main>
     <section>
       <h2>Entrée</h2>
-      <label for="colors">Couleurs 500</label>
+      <label for="colors">Couleurs de référence</label>
       <textarea id="colors" spellcheck="false">yellow: #ffd000
 blue: #1d56c5
 neutral: #1c1c1e
@@ -112,9 +112,11 @@ beige: #f9f4ee</textarea>
       </div>
 
       <div class="hint">
-        Profils automatiques : <strong>yellow</strong>, <strong>neutral</strong>, <strong>red</strong>, <strong>green</strong>, <strong>teal</strong>, <strong>blue</strong>, <strong>surface</strong>.
-        Les jaunes gardent une chroma élevée dans les tons clairs et basculent progressivement vers l'ambre/brun sur les tons foncés. Le neutral peut être verrouillé avec #1C1C1E en 800.
-      </div>
+  Formats acceptés :
+  <code>name: #hex</code> ou
+  <code>name: #hex @niveau</code>.
+  Sans niveau précisé, la couleur est utilisée comme référence 500.
+</div>
     </section>
 
     <section>
@@ -160,28 +162,149 @@ beige: #f9f4ee</textarea>
         maxC: {50:.165,100:.195,200:.225,300:.245,400:.250,600:.225,700:.195,800:.155,900:.115}
       },
       blue: {
-        label: "blue",
-        l: {50:.985,100:.955,200:.905,300:.825,400:.710,600:.500,700:.405,800:.315,900:.225},
-        c: {50:.12,100:.22,200:.38,300:.58,400:.82,600:.92,700:.78,800:.58,900:.42}
-      },
+  label: "blue",
+  l: {
+    50: .985,
+    100: .955,
+    200: .905,
+    300: .825,
+    400: .710,
+    500: .600,
+    600: .500,
+    700: .405,
+    800: .315,
+    900: .225
+  },
+  c: {
+    50: .12,
+    100: .22,
+    200: .38,
+    300: .58,
+    400: .82,
+    500: 1,
+    600: .92,
+    700: .78,
+    800: .58,
+    900: .42
+  }
+},
       teal: {
-        label: "teal / gamme",
-        l: {50:.985,100:.955,200:.905,300:.825,400:.705,600:.500,700:.405,800:.315,900:.230},
-        c: {50:.14,100:.25,200:.42,300:.62,400:.86,600:.92,700:.78,800:.60,900:.44},
-        hShift: {50:1,100:1,200:0,300:0,400:0,600:-2,700:-4,800:-6,900:-8}
-      },
+  label: "teal / gamme",
+  l: {
+    50: .985,
+    100: .955,
+    200: .905,
+    300: .825,
+    400: .705,
+    500: .600,
+    600: .500,
+    700: .405,
+    800: .315,
+    900: .230
+  },
+  c: {
+    50: .14,
+    100: .25,
+    200: .42,
+    300: .62,
+    400: .86,
+    500: 1,
+    600: .92,
+    700: .78,
+    800: .60,
+    900: .44
+  },
+  hShift: {
+    50: 1,
+    100: 1,
+    200: 0,
+    300: 0,
+    400: 0,
+    500: 0,
+    600: -2,
+    700: -4,
+    800: -6,
+    900: -8
+  }
+},
       green: {
-        label: "green / success strong",
-        l: {50:.985,100:.955,200:.905,300:.825,400:.705,600:.455,700:.360,800:.270,900:.200},
-        c: {50:.13,100:.24,200:.40,300:.60,400:.84,600:1.00,700:.88,800:.68,900:.48},
-        hShift: {50:1,100:1,200:0,300:0,400:0,600:-2,700:-5,800:-8,900:-11}
-      },
+  label: "green / success strong",
+  l: {
+    50: .985,
+    100: .955,
+    200: .905,
+    300: .825,
+    400: .705,
+    500: .590,
+    600: .455,
+    700: .360,
+    800: .270,
+    900: .200
+  },
+  c: {
+    50: .13,
+    100: .24,
+    200: .40,
+    300: .60,
+    400: .84,
+    500: 1,
+    600: 1.00,
+    700: .88,
+    800: .68,
+    900: .48
+  },
+  hShift: {
+    50: 1,
+    100: 1,
+    200: 0,
+    300: 0,
+    400: 0,
+    500: 0,
+    600: -2,
+    700: -5,
+    800: -8,
+    900: -11
+  }
+},
       red: {
-        label: "red / danger strong",
-        l: {50:.985,100:.950,200:.895,300:.805,400:.685,600:.455,700:.355,800:.265,900:.190},
-        c: {50:.12,100:.24,200:.42,300:.62,400:.86,600:1.02,700:.90,800:.72,900:.52},
-        hShift: {50:1,100:1,200:0,300:0,400:0,600:-1,700:-3,800:-5,900:-7}
-      },
+  label: "red / danger strong",
+  l: {
+    50: .985,
+    100: .950,
+    200: .895,
+    300: .805,
+    400: .685,
+    500: .570,
+    600: .455,
+    700: .355,
+    800: .265,
+    900: .190
+  },
+  c: {
+    50: .12,
+    100: .24,
+    200: .42,
+    300: .62,
+    400: .86,
+    500: 1,
+    600: 1.02,
+    700: .90,
+    800: .72,
+    900: .52
+  },
+  hShift: {
+    50: 1,
+    100: 1,
+    200: 0,
+    300: 0,
+    400: 0,
+    500: 0,
+    600: -1,
+    700: -3,
+    800: -5,
+    900: -7
+  }
+},
       neutral: {
         label: "neutral",
         l: {50:.985,100:.950,200:.895,300:.805,400:.665,600:.230,700:.180,800:.130,900:.090},
@@ -210,11 +333,11 @@ beige: #f9f4ee</textarea>
     const toOklch = converter("oklch");
 
     function parseColors(text) {
-      return text
-      .split(/\n+/)
-      .map((x) => x.trim())
-      .filter(Boolean)
-      .map((row) => {
+  return text
+    .split(/\n+/)
+    .map((row) => row.trim())
+    .filter(Boolean)
+    .map((row) => {
       const match = row.match(
         /^([a-zA-Z0-9_-]+)\s*[:,\s]\s*(#[0-9a-fA-F]{3,8})(?:\s+@?(50|100|200|300|400|500|600|700|800|900))?$/
       );
@@ -265,12 +388,20 @@ beige: #f9f4ee</textarea>
   keepBlue,
   surfaceBeige,
   mode
-    ) {
+) {
       const neutral800 = document.querySelector("#neutral800").checked;
 
-      if (keepBlue && name === "blue") {
-        return { scale: BLUE_FIXED, profile: "locked blue" };
-      }
+      if (
+  keepBlue &&
+  name === "blue" &&
+  referenceLevel === 500 &&
+  hex.toUpperCase() === BLUE_FIXED[500].toUpperCase()
+) {
+  return {
+    scale: BLUE_FIXED,
+    profile: "locked blue"
+  };
+}
 
       if (neutral800 && name === "neutral" && hex.toUpperCase() === "#1C1C1E") {
         return { scale: NEUTRAL_FIXED, profile: "locked neutral / 800 reference" };
@@ -291,15 +422,78 @@ beige: #f9f4ee</textarea>
       }
 
       const scale = {};
-      for (const level of LEVELS) {
-        if (level === referenceLevel) {
-        scale[level] = hex.toUpperCase();
-        continue;
-      }
-        scale[level] = generateSingle(hex, profile.l[level], profile.c[level], profile, level, mode);
-      }
-      return { scale, profile: profile.label };
-    }
+const base = toOklch(hex);
+
+if (!base) {
+  throw new Error(`Impossible de convertir la couleur ${hex} en OKLCH.`);
+}
+
+const referenceProfileL = profile.l[referenceLevel];
+const referenceProfileC = profile.c[referenceLevel];
+
+if (
+  referenceProfileL === undefined ||
+  referenceProfileC === undefined
+) {
+  throw new Error(
+    `Le profil "${profileName}" ne prend pas en charge le niveau de référence ${referenceLevel}.`
+  );
+}
+
+for (const level of LEVELS) {
+  if (level === referenceLevel) {
+    scale[level] = hex.toUpperCase();
+    continue;
+  }
+
+  if (referenceLevel === 500) {
+    /*
+      Conservation stricte du fonctionnement historique :
+      les palettes Maeva existantes restent inchangées.
+    */
+    scale[level] = generateSingle(
+      hex,
+      profile.l[level],
+      profile.c[level],
+      profile,
+      level,
+      mode
+    );
+
+    continue;
+  }
+
+  /*
+    Pour une référence autre que 500, on déplace la courbe
+    autour de la luminance réelle de la couleur saisie.
+  */
+  const targetL = Math.max(
+    0,
+    Math.min(
+      1,
+      base.l + (profile.l[level] - referenceProfileL)
+    )
+  );
+
+  const relativeChroma =
+    referenceProfileC > 0
+      ? profile.c[level] / referenceProfileC
+      : 1;
+
+  scale[level] = generateSingle(
+    hex,
+    targetL,
+    relativeChroma,
+    profile,
+    level,
+    mode
+  );
+}
+
+return {
+  scale,
+  profile: profile.label
+};
 
     function generateSingle(hex, targetL, cFactor, profile, level, mode) {
       const base = toOklch(hex);
@@ -322,28 +516,46 @@ beige: #f9f4ee</textarea>
     }
 
     function buildPalettes() {
-      const colors = parseColors(document.querySelector("#colors").value);
-      const keepBlue = document.querySelector("#keepBlue").checked;
-      const surfaceBeige = document.querySelector("#surfaceBeige").checked;
-      const mode = document.querySelector("#mode").value;
-      const result = {};
-      const profiles = {};
-      for (const color of colors) {
-        const generated = generateScale(
-          color.name,
-          color.hex,
-          color.referenceLevel,
-          keepBlue,
-          surfaceBeige,
-          mode
-        );
-        result[color.name] = generated.scale;
-        profiles[color.name] = generated.profile;
-      }
-      return { result, profiles };
-    }
+  const colors = parseColors(
+    document.querySelector("#colors").value
+  );
 
-    function renderPalettes(data, profiles) {
+  const keepBlue =
+    document.querySelector("#keepBlue").checked;
+
+  const surfaceBeige =
+    document.querySelector("#surfaceBeige").checked;
+
+  const mode =
+    document.querySelector("#mode").value;
+
+  const result = {};
+  const profiles = {};
+  const referenceLevels = {};
+
+  for (const color of colors) {
+    const generated = generateScale(
+      color.name,
+      color.hex,
+      color.referenceLevel,
+      keepBlue,
+      surfaceBeige,
+      mode
+    );
+
+    result[color.name] = generated.scale;
+    profiles[color.name] = generated.profile;
+    referenceLevels[color.name] = color.referenceLevel;
+  }
+
+  return {
+    result,
+    profiles,
+    referenceLevels
+  };
+}
+
+    function renderPalettes(data, profiles, referenceLevels) {
       const root = document.querySelector("#palettes");
       const showProfile = document.querySelector("#showProfile").checked;
       root.innerHTML = "";
@@ -359,7 +571,25 @@ beige: #f9f4ee</textarea>
         `;
         const swatches = block.querySelector(".swatches");
         for (const [level, hex] of Object.entries(scale)) {
-          const isLocked = level === "500" || (name === "blue" && document.querySelector("#keepBlue").checked) || (name === "neutral" && document.querySelector("#neutral800").checked && level === "800");
+          const isReferenceLevel =
+  Number(level) === referenceLevels[name];
+
+const isLockedBlue =
+  name === "blue" &&
+  document.querySelector("#keepBlue").checked &&
+  referenceLevels[name] === 500 &&
+  scale[500]?.toUpperCase() === BLUE_FIXED[500].toUpperCase();
+
+const isLockedNeutral =
+  name === "neutral" &&
+  document.querySelector("#neutral800").checked &&
+  referenceLevels[name] === 800 &&
+  scale[800]?.toUpperCase() === NEUTRAL_FIXED[800].toUpperCase();
+
+const isLocked =
+  isReferenceLevel ||
+  isLockedBlue ||
+  isLockedNeutral; || (name === "neutral" && document.querySelector("#neutral800").checked && level === "800");
           const swatch = document.createElement("div");
           swatch.className = "swatch";
           swatch.innerHTML = `
@@ -399,9 +629,19 @@ beige: #f9f4ee</textarea>
       const error = document.querySelector("#error");
       try {
         error.style.display = "none";
-        const { result, profiles } = buildPalettes();
-        window.__paletteData = result;
-        renderPalettes(result, profiles);
+        const {
+  result,
+  profiles,
+  referenceLevels
+} = buildPalettes();
+
+window.__paletteData = result;
+
+renderPalettes(
+  result,
+  profiles,
+  referenceLevels
+);
         document.querySelector("#code").textContent = exportData(result, document.querySelector("#export").value);
       } catch (e) {
         error.textContent = e.message;
