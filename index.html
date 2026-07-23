@@ -132,6 +132,12 @@ beige: #f9f4ee</textarea>
 
     const LEVELS = [50,100,200,300,400,500,600,700,800,900];
 
+
+    const YELLOW_FIXED = {
+      50:"#FFFCF0",100:"#FFF6D7",200:"#FFEAAB",300:"#FFD95C",400:"#FFDA3D",
+      500:"#FFD000",600:"#FABB00",700:"#D99A00",800:"#A66F00",900:"#704600"
+    };
+
     const BLUE_FIXED = {
       50:"#F4F8FF",100:"#E4EEFF",200:"#C8DCFF",300:"#9FC1FF",400:"#5F8FF0",
       500:"#1D56C5",600:"#194DB3",700:"#15439C",800:"#113885",900:"#0D2D6B"
@@ -264,6 +270,17 @@ beige: #f9f4ee</textarea>
       mode
     ) {
       const neutral800 = document.querySelector("#neutral800").checked;
+
+      if (
+        name === "yellow" &&
+        referenceLevel === 500 &&
+        hex.toUpperCase() === YELLOW_FIXED[500]
+      ) {
+        return {
+          scale: YELLOW_FIXED,
+          profile: "locked yellow / Maeva tuned"
+        };
+      }
 
       if (
         keepBlue &&
